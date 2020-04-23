@@ -88,12 +88,12 @@ class App:
 
     def display_row(self, row):
 
-        self.row_string.set('current row: ' + str(row))
-        #self.simultanious_rows = self.rows_slider.get()
+        self.row_string.set('Current row: ' + str(row + 1))
+        # self.simultanious_rows = self.rows_slider.get()
 
         self.simultanious_rows = 2
 
-        #if len(self.pixels) > self.img.width: # Remove one row
+        # if len(self.pixels) > self.img.width: # Remove one row
         for p in self.pixels:
             self.canvas.delete(p)
         self.pixels.clear()
