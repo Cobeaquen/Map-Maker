@@ -107,7 +107,7 @@ class App:
 
         for r in range(self.simultanious_rows):
             for x in range(self.img.width):
-                rgb = self.img.getpixel((x, row + r))
+                rgb = self.img.getpixel((x, row - r))
                 prev_row_rgb = (int(rgb[0] / 2), int(rgb[1] / 2), int(rgb[2] / 2))
                 draw_color = rgb
 
