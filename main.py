@@ -108,21 +108,21 @@ class App:
         for r in range(self.simultanious_rows):
             for x in range(self.img.width):
                 rgb = self.img.getpixel((x, row + r))
-                prev_row_rgb = (rgb[0] / 2, rgb[1] / 2, rgb[2] / 2)
+                prev_row_rgb = (int(rgb[0] / 2), int(rgb[1] / 2), int(rgb[2] / 2))
                 draw_color = rgb
 
                 if r != 0:
                     draw_color = prev_row_rgb
 
-                self.pixels.append(self.canvas.create_rectangle((x - 1) * self.pixel_size, (row + r) *
-                                                                self.pixel_size, x * self.pixel_size, ((row + r) + 1)
+                self.pixels.append(self.canvas.create_rectangle((x - 1) * self.pixel_size, (row - r) *
+                                                                self.pixel_size, x * self.pixel_size, ((row - r) + 1)
                                                                 * self.pixel_size, fill=from_rgb(draw_color)))
 
                 if rgb == prev_rgb:
                     consec += 1
                 elif r == 0 and x > 0:
                     self.consec_pixel_texts.append(self.canvas.create_text((x - 1 - consec / 2) * self.pixel_size,
-                                                                           ((row + r) - 1) * self.pixel_size +
+                                                                           ((row + r) + 2) * self.pixel_size +
                                                                            (row + r) * (x < 2), text=str(consec),
                                                                            justify=CENTER))
                     consec = 1
@@ -130,13 +130,11 @@ class App:
                 prev_rgb = rgb
 
             if r == 0:
-                if (row + r) < 2:
-                    self.consec_pixel_texts.append(self.canvas.create_text((self.img.width - 1 - consec / 2) * self.pixel_size,
-                                                                           ((row + r) + 1) * 2 * self.pixel_size,
-                                                                           text=str(consec), justify=CENTER))
-                else:
-                    self.consec_pixel_texts.append(self.canvas.create_text((self.img.width - 1 - consec / 2) * self.pixel_size,
-                                                                           ((row + r) - 1) * self.pixel_size,
+                # if row > img.width - 2: # put text on top
+
+                # else:
+                self.consec_pixel_texts.append(self.canvas.create_text((self.img.width - 1 - consec / 2) * self.pixel_size,
+                                                                           ((row + r) + 2) * self.pixel_size,
                                                                            text=str(consec), justify=CENTER))
 
 
