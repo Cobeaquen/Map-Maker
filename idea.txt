@@ -1,0 +1,3 @@
+one row at a time by default (toggleable)
+
+show amount of consecutive blocks of the same color.
